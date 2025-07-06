@@ -42,7 +42,7 @@ impl<'a> DecodeValue<'a> for TrailerField {
     fn decode_value<R: Reader<'a>>(decoder: &mut R, header: der::Header) -> der::Result<Self> {
         match u8::decode_value(decoder, header)? {
             1 => Ok(TrailerField::BC),
-            _ => Err(Self::TAG.value_error()),
+            _ => Err(Self::TAG.value_error().into()),
         }
     }
 }
